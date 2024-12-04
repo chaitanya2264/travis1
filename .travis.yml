@@ -1,0 +1,36 @@
+# Operating System
+os: linux
+dist: focal
+
+# Programming language and runtime
+language: python
+
+# Python versions to test against
+python:
+  - "3.8"
+  - "3.9"
+
+# Additional language setup for Ruby
+rvm:
+  - 2.7
+  - jruby
+
+# Install dependencies
+install:
+  - pip install -r requirements.txt  # For Python
+  - gem install bundler              # For Ruby
+  - bundle install                   # Install Ruby gems
+
+# Run tests
+script:
+  - pytest  # Run Python tests
+  - bundle exec rspec  # Run Ruby tests (replace with your Ruby test command)
+
+# Cache dependencies
+cache:
+  pip
+
+# Specify subpath for tests
+env:
+  global:
+    - PERFORCE_TEST_PATH=/your/subpath/within/repository/which/will/be/downloaded
